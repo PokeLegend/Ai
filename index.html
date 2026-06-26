@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FedPromptly — AI Prompt Marketplace</title>
+    <title>FedPromptly ✦ Kawaii Prompt Marketplace</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet" />
     <style>
-        /* ── Reset & Base ── */
+        /* ─── RESET & BASE ─── */
         *,
         *::before,
         *::after {
@@ -18,20 +18,28 @@
         }
 
         :root {
-            --bg: #0b0d11;
-            --surface: #14171e;
-            --surface-2: #1c202a;
-            --border: #2a2f3d;
-            --text: #eef1f8;
-            --text-muted: #949bb0;
-            --accent: #7c5cfc;
-            --accent-glow: rgba(124, 92, 252, 0.25);
-            --accent-hover: #9a7eff;
-            --gold: #f7c948;
-            --radius: 14px;
-            --radius-sm: 8px;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-            --transition: 0.25s ease;
+            --pink: #f9a8b8;
+            --pink-dark: #e88295;
+            --pink-light: #fce4ec;
+            --peach: #fdd9c0;
+            --cream: #fcf0f3;
+            --beige: #f5e6e0;
+            --lavender: #d9c8f0;
+            --mint: #b8e6d0;
+            --coral: #ff9a8b;
+            --gold: #f7d44a;
+            --yellow: #fce88a;
+            --teal: #7dd3c0;
+            --magenta: #e88ab5;
+            --chocolate: #8b6b5a;
+            --white: #ffffff;
+            --soft-shadow: rgba(255, 150, 180, 0.2);
+            --glow-pink: rgba(249, 168, 184, 0.3);
+            --radius-xl: 32px;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         html {
@@ -39,98 +47,231 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Quicksand', -apple-system, system-ui, sans-serif;
+            background: radial-gradient(ellipse at 30% 20%, #fde4ec, #f5ceda, #ecc4d0);
+            color: #4a3a3a;
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            /* Polka dot scrapbook texture */
+            background-image: radial-gradient(#f9a8b8 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-blend-mode: soft-light;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color var(--transition);
-        }
-        a:hover {
-            color: var(--accent-hover);
+        /* Soft vignette to dim edges */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(200, 150, 165, 0.15) 100%);
+            z-index: 0;
         }
 
+        /* ─── FLOATING DECORATIONS (MORE & CUTER) ─── */
+        .floating-deco {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 2rem;
+            opacity: 0.35;
+            animation: floatDeco 22s infinite alternate ease-in-out;
+            filter: drop-shadow(0 4px 12px rgba(255, 150, 180, 0.1));
+        }
+        .floating-deco:nth-child(1) {
+            top: 6%;
+            left: 2%;
+            animation-duration: 20s;
+            font-size: 2.8rem;
+        }
+        .floating-deco:nth-child(2) {
+            top: 12%;
+            right: 1%;
+            animation-duration: 18s;
+            animation-delay: 1.5s;
+            font-size: 2.2rem;
+        }
+        .floating-deco:nth-child(3) {
+            bottom: 18%;
+            left: 1%;
+            animation-duration: 24s;
+            animation-delay: 3s;
+            font-size: 3rem;
+        }
+        .floating-deco:nth-child(4) {
+            bottom: 10%;
+            right: 2%;
+            animation-duration: 19s;
+            animation-delay: 0.5s;
+            font-size: 2.6rem;
+        }
+        .floating-deco:nth-child(5) {
+            top: 40%;
+            left: 0.5%;
+            animation-duration: 21s;
+            animation-delay: 2s;
+            font-size: 1.8rem;
+        }
+        .floating-deco:nth-child(6) {
+            top: 55%;
+            right: 0.5%;
+            animation-duration: 23s;
+            animation-delay: 4s;
+            font-size: 2rem;
+        }
+        .floating-deco:nth-child(7) {
+            top: 25%;
+            left: 6%;
+            animation-duration: 26s;
+            animation-delay: 1s;
+            font-size: 1.6rem;
+        }
+        .floating-deco:nth-child(8) {
+            bottom: 35%;
+            right: 4%;
+            animation-duration: 20s;
+            animation-delay: 3.5s;
+            font-size: 2.4rem;
+        }
+        .floating-deco:nth-child(9) {
+            top: 70%;
+            left: 3%;
+            animation-duration: 28s;
+            animation-delay: 2.5s;
+            font-size: 1.4rem;
+        }
+        .floating-deco:nth-child(10) {
+            top: 15%;
+            left: 12%;
+            animation-duration: 18s;
+            animation-delay: 4.5s;
+            font-size: 1.2rem;
+        }
+
+        @keyframes floatDeco {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translate(14px, -22px) rotate(8deg) scale(1.08);
+            }
+            66% {
+                transform: translate(-10px, 16px) rotate(-5deg) scale(0.92);
+            }
+            100% {
+                transform: translate(8px, -12px) rotate(4deg) scale(1.04);
+            }
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(252, 240, 243, 0.5);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink);
+            border-radius: 20px;
+            border: 2px solid rgba(252, 240, 243, 0.5);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--pink-dark);
+        }
+
+        /* ─── CONTAINER ─── */
         .container {
             max-width: 1240px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* ── Buttons ── */
+        /* ─── BUTTONS ─── */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 60px;
-            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
             font-size: 0.95rem;
             border: none;
             cursor: pointer;
             transition: all var(--transition);
             text-decoration: none;
-            font-family: inherit;
-            background: var(--surface-2);
-            color: var(--text);
-            border: 1px solid var(--border);
+            position: relative;
+            box-shadow: 0 4px 16px rgba(249, 168, 184, 0.2);
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(249, 168, 184, 0.3);
+        }
+        .btn:active {
+            transform: scale(0.97);
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
+            background: var(--pink);
+            color: #4a3a3a;
         }
         .btn-primary:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
+            background: var(--pink-dark);
             color: #fff;
         }
 
         .btn-gold {
             background: var(--gold);
-            color: #0b0d11;
-            border-color: var(--gold);
+            color: #4a3a3a;
         }
         .btn-gold:hover {
-            background: #ffdb5e;
-            border-color: #ffdb5e;
-            color: #0b0d11;
+            background: #f5c83a;
+            color: #4a3a3a;
         }
 
         .btn-outline {
-            background: transparent;
-            border-color: var(--border);
+            background: rgba(255, 248, 250, 0.7);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--pink);
+            color: #4a3a3a;
         }
         .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            background: var(--pink);
+            border-color: var(--pink);
         }
 
         .btn-sm {
-            padding: 8px 18px;
-            font-size: 0.82rem;
+            padding: 8px 20px;
+            font-size: 0.8rem;
         }
 
-        /* ── Header / Nav ── */
+        .btn-subscribe {
+            background: linear-gradient(135deg, var(--pink), var(--magenta));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(232, 138, 181, 0.35);
+        }
+        .btn-subscribe:hover {
+            background: linear-gradient(135deg, var(--pink-dark), var(--magenta));
+            color: #fff;
+        }
+
+        /* ─── NAVBAR ─── */
         .navbar {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(11, 13, 17, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(252, 240, 243, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 2px solid rgba(249, 168, 184, 0.2);
+            box-shadow: 0 4px 30px rgba(249, 168, 184, 0.06);
         }
 
         .navbar .container {
@@ -138,81 +279,108 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
 
         .logo {
-            font-size: 1.6rem;
-            font-weight: 800;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            color: #4a3a3a;
+            text-shadow: 0 2px 12px rgba(249, 168, 184, 0.2);
         }
         .logo span {
-            color: var(--accent);
+            color: var(--pink-dark);
         }
         .logo .badge {
-            font-size: 0.6rem;
-            font-weight: 600;
-            background: var(--accent);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 700;
+            background: var(--pink);
             color: #fff;
-            padding: 2px 10px;
+            padding: 2px 12px;
             border-radius: 40px;
-            letter-spacing: 0.3px;
-            margin-left: 4px;
+            letter-spacing: 0.5px;
+            text-shadow: none;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
             flex-wrap: wrap;
         }
         .nav-links a {
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.92rem;
-            padding: 8px 16px;
+            color: #6a5a5a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 18px;
             border-radius: 40px;
             transition: all var(--transition);
+            text-decoration: none;
         }
         .nav-links a:hover {
-            color: var(--text);
-            background: var(--surface-2);
+            background: rgba(249, 168, 184, 0.15);
+            color: #4a3a3a;
         }
         .nav-links a.cta-link {
-            background: var(--accent);
-            color: #fff;
+            background: var(--pink);
+            color: #4a3a3a;
+            box-shadow: 0 2px 12px rgba(249, 168, 184, 0.25);
         }
         .nav-links a.cta-link:hover {
-            background: var(--accent-hover);
+            background: var(--pink-dark);
+            color: #fff;
         }
 
-        /* ── Hero ── */
+        /* ─── HERO ─── */
         .hero {
-            padding: 60px 0 50px;
+            padding: 40px 0 30px;
             text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.4rem;
+            letter-spacing: 20px;
+            color: var(--pink);
+            opacity: 0.25;
+            white-space: nowrap;
         }
         .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            letter-spacing: -1.5px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.6rem;
             line-height: 1.1;
+            letter-spacing: -1px;
+            color: #4a3a3a;
             max-width: 780px;
-            margin: 0 auto 16px;
+            margin: 0 auto 10px;
+            text-shadow: 0 4px 24px rgba(249, 168, 184, 0.12);
         }
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent), var(--gold));
+            background: linear-gradient(135deg, var(--pink-dark), var(--magenta), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 620px;
-            margin: 0 auto 32px;
+            font-size: 1.1rem;
+            color: #6a5a5a;
+            max-width: 600px;
+            margin: 0 auto 24px;
+            background: rgba(255, 248, 250, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid rgba(249, 168, 184, 0.15);
+            box-shadow: 0 2px 20px rgba(249, 168, 184, 0.05);
         }
         .hero .actions {
             display: flex;
@@ -221,79 +389,136 @@
             gap: 12px;
         }
 
-        /* ── Section Headers ── */
-        .section-head {
-            text-align: center;
-            margin-bottom: 40px;
+        /* ─── STICKER CLOUD ─── */
+        .sticker-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px 18px;
+            margin: 12px 0 6px;
+            font-size: 1.5rem;
+            opacity: 0.5;
         }
-        .section-head h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        .sticker-cloud span {
+            display: inline-block;
+            animation: wobble 7s infinite alternate ease-in-out;
+            filter: drop-shadow(0 2px 8px rgba(249, 168, 184, 0.1));
         }
-        .section-head p {
-            color: var(--text-muted);
-            max-width: 540px;
-            margin: 8px auto 0;
+        .sticker-cloud span:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        .sticker-cloud span:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+        .sticker-cloud span:nth-child(4) {
+            animation-delay: 2.4s;
+        }
+        .sticker-cloud span:nth-child(5) {
+            animation-delay: 3.2s;
+        }
+        .sticker-cloud span:nth-child(6) {
+            animation-delay: 4s;
         }
 
-        /* ── Pill Tabs ── */
+        @keyframes wobble {
+            0% {
+                transform: rotate(-5deg) scale(1);
+            }
+            100% {
+                transform: rotate(5deg) scale(1.08);
+            }
+        }
+
+        /* ─── SECTION HEADERS ─── */
+        .section-head {
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .section-head h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.4rem;
+            color: #4a3a3a;
+            letter-spacing: -0.5px;
+            display: inline-block;
+            background: rgba(255, 248, 250, 0.6);
+            padding: 4px 32px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(249, 168, 184, 0.1);
+            box-shadow: 0 2px 16px rgba(249, 168, 184, 0.05);
+        }
+        .section-head p {
+            color: #6a5a5a;
+            max-width: 540px;
+            margin: 8px auto 0;
+            font-size: 1.05rem;
+        }
+
+        /* ─── PILL TABS ─── */
         .pill-tabs {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 36px;
+            margin-bottom: 28px;
         }
         .pill-tabs .pill {
-            padding: 8px 22px;
+            padding: 8px 24px;
             border-radius: 40px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            font-weight: 500;
-            font-size: 0.9rem;
+            background: rgba(255, 248, 250, 0.6);
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(249, 168, 184, 0.15);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
             cursor: pointer;
             transition: all var(--transition);
-            color: var(--text-muted);
+            color: #6a5a5a;
         }
         .pill-tabs .pill:hover {
-            border-color: var(--accent);
-            color: var(--text);
+            border-color: var(--pink);
+            background: rgba(249, 168, 184, 0.1);
+            transform: translateY(-2px);
         }
         .pill-tabs .pill.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
+            background: var(--pink);
+            border-color: var(--pink);
+            color: #4a3a3a;
+            box-shadow: 0 4px 16px rgba(249, 168, 184, 0.25);
         }
 
-        /* ── Gallery Grid ── */
+        /* ─── GALLERY GRID ─── */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 28px;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
         .gallery-card {
-            background: var(--surface);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
+            background: rgba(255, 248, 250, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(249, 168, 184, 0.15);
             overflow: hidden;
             transition: all var(--transition);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 24px rgba(249, 168, 184, 0.06);
         }
         .gallery-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-6px);
+            border-color: var(--pink);
+            box-shadow: 0 12px 48px rgba(249, 168, 184, 0.12);
         }
 
         .gallery-card .img-wrap {
             position: relative;
             aspect-ratio: 16/10;
-            background: var(--surface-2);
+            background: rgba(249, 168, 184, 0.1);
             overflow: hidden;
+            border-bottom: 2px solid rgba(249, 168, 184, 0.05);
         }
         .gallery-card .img-wrap img {
             width: 100%;
@@ -303,7 +528,7 @@
             transition: filter var(--transition);
         }
         .gallery-card .img-wrap img.blurred {
-            filter: blur(18px) brightness(0.5);
+            filter: blur(20px) brightness(0.7);
             pointer-events: none;
             user-select: none;
         }
@@ -315,28 +540,34 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            gap: 8px;
+            background: rgba(249, 168, 184, 0.15);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            gap: 6px;
             opacity: 0;
             transition: opacity var(--transition);
             pointer-events: none;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
         }
         .gallery-card .img-wrap:hover .lock-overlay {
             opacity: 1;
         }
         .gallery-card .lock-overlay .lock-icon {
-            font-size: 2.4rem;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
         }
         .gallery-card .lock-overlay p {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #4a3a3a;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 2px 18px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
         }
         .gallery-card .lock-overlay .btn {
             pointer-events: auto;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .gallery-card .card-body {
@@ -346,50 +577,54 @@
             flex-direction: column;
         }
         .gallery-card .card-body h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.15rem;
+            letter-spacing: -0.3px;
+            color: #4a3a3a;
+            margin-bottom: 2px;
         }
         .gallery-card .card-body .theme-tag {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--accent);
-            background: rgba(124, 92, 252, 0.12);
-            padding: 2px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            background: rgba(249, 168, 184, 0.15);
+            padding: 2px 14px;
             border-radius: 40px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             width: fit-content;
+            border: 1px solid rgba(249, 168, 184, 0.05);
         }
         .gallery-card .card-body .desc {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-bottom: 12px;
+            color: #6a5a5a;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
             flex: 1;
         }
 
-        /* ── Dropdown Prompt ── */
+        /* ─── DROPDOWN PROMPT ─── */
         details {
-            margin: 10px 0 14px;
-            background: var(--bg);
+            margin: 8px 0 12px;
+            background: rgba(255, 255, 255, 0.4);
             border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
+            border: 2px solid rgba(249, 168, 184, 0.1);
             transition: border var(--transition);
         }
         details:hover {
-            border-color: var(--accent);
+            border-color: var(--pink);
         }
         details summary {
             padding: 10px 16px;
-            font-weight: 500;
-            font-size: 0.88rem;
+            font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
             list-style: none;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: var(--text-muted);
+            color: #6a5a5a;
             transition: color var(--transition);
+            border-radius: var(--radius-sm);
         }
         details summary::-webkit-details-marker {
             display: none;
@@ -398,32 +633,32 @@
             content: "▾";
             font-size: 0.7rem;
             transition: transform var(--transition);
-            color: var(--text-muted);
+            color: var(--pink-dark);
         }
         details[open] summary::after {
             transform: rotate(180deg);
         }
         details summary:hover {
-            color: var(--text);
+            color: #4a3a3a;
         }
         details .prompt-content {
             padding: 0 16px 16px;
-            font-size: 0.88rem;
-            color: var(--text);
+            font-size: 0.85rem;
+            color: #4a3a3a;
             line-height: 1.7;
             white-space: pre-wrap;
             word-break: break-word;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(249, 168, 184, 0.1);
             padding-top: 14px;
         }
         details .prompt-content .blank {
             display: inline-block;
-            background: rgba(124, 92, 252, 0.15);
-            color: var(--accent);
-            font-weight: 600;
-            padding: 0 6px;
+            background: rgba(249, 168, 184, 0.15);
+            color: var(--pink-dark);
+            font-weight: 700;
+            padding: 0 8px;
             border-radius: 4px;
-            border-bottom: 2px dashed var(--accent);
+            border-bottom: 3px dashed var(--pink);
         }
 
         .card-footer {
@@ -437,33 +672,85 @@
         .card-footer .price-tag {
             font-weight: 700;
             font-size: 1rem;
-            color: var(--gold);
+            color: var(--pink-dark);
         }
         .card-footer .price-tag.free {
-            color: #4ade80;
+            color: var(--mint);
         }
 
-        /* ── Premium badge ── */
+        /* ─── PREMIUM BADGE ─── */
         .premium-badge {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            background: var(--gold);
-            color: #0b0d11;
-            padding: 2px 12px;
+            background: linear-gradient(135deg, var(--gold), var(--yellow));
+            color: #4a3a3a;
+            padding: 2px 14px;
             border-radius: 40px;
             display: inline-block;
-            margin-left: 8px;
+            margin-left: 6px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
         }
 
-        /* ── Submit Section ── */
+        /* ─── SUBSCRIBE CTA ─── */
+        .subscribe-cta {
+            background: rgba(255, 248, 250, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(249, 168, 184, 0.1);
+            padding: 44px 36px;
+            margin: 12px 0 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 32px rgba(249, 168, 184, 0.05);
+        }
+        .subscribe-cta::before {
+            content: '✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            letter-spacing: 16px;
+            color: var(--pink);
+            opacity: 0.1;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .subscribe-cta h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            color: #4a3a3a;
+        }
+        .subscribe-cta p {
+            color: #6a5a5a;
+            max-width: 500px;
+            margin: 6px auto 20px;
+            font-size: 1.05rem;
+        }
+        .subscribe-cta .btn-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+        .subscribe-cta .fine {
+            font-size: 0.8rem;
+            color: #9a8a8a;
+            margin-top: 14px;
+        }
+
+        /* ─── SUBMIT SECTION ─── */
         .submit-section {
-            background: var(--surface);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            padding: 48px 40px;
-            margin: 48px 0 60px;
+            background: rgba(255, 248, 250, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(249, 168, 184, 0.1);
+            padding: 44px 40px;
+            margin: 40px 0 48px;
+            box-shadow: 0 4px 24px rgba(249, 168, 184, 0.04);
         }
         .submit-section .two-col {
             display: grid;
@@ -472,13 +759,13 @@
             align-items: start;
         }
         .submit-section .info h2 {
+            font-family: 'Fredoka One', cursive;
             font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            color: #4a3a3a;
         }
         .submit-section .info p {
-            color: var(--text-muted);
-            margin: 12px 0 20px;
+            color: #6a5a5a;
+            margin: 10px 0 18px;
         }
         .submit-section .info .benefits {
             list-style: none;
@@ -491,6 +778,11 @@
             align-items: center;
             gap: 12px;
             font-size: 0.95rem;
+            color: #4a3a3a;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 6px 16px;
+            border-radius: 60px;
+            border: 1px solid rgba(249, 168, 184, 0.05);
         }
         .submit-section .info .benefits li span {
             font-size: 1.2rem;
@@ -499,87 +791,89 @@
         .submit-form {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
         .submit-form label {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #6a5a5a;
         }
         .submit-form input,
         .submit-form textarea,
         .submit-form select {
             width: 100%;
-            padding: 12px 16px;
-            border-radius: var(--radius-sm);
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            font-family: inherit;
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(249, 168, 184, 0.1);
+            color: #4a3a3a;
+            font-family: 'Quicksand', sans-serif;
             font-size: 0.95rem;
-            transition: border var(--transition);
+            transition: border var(--transition), box-shadow var(--transition);
             outline: none;
         }
         .submit-form input:focus,
         .submit-form textarea:focus,
         .submit-form select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
+            border-color: var(--pink);
+            box-shadow: 0 0 0 4px rgba(249, 168, 184, 0.1);
         }
         .submit-form textarea {
-            min-height: 100px;
+            min-height: 90px;
             resize: vertical;
         }
         .submit-form input[type="file"] {
-            padding: 10px 12px;
-            background: var(--bg);
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
         }
         .submit-form input[type="file"]::file-selector-button {
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 40px;
             border: none;
-            background: var(--surface-2);
-            color: var(--text);
-            font-weight: 500;
+            background: rgba(249, 168, 184, 0.2);
+            color: #4a3a3a;
+            font-weight: 600;
             cursor: pointer;
-            margin-right: 12px;
+            margin-right: 14px;
             transition: background var(--transition);
+            font-family: 'Quicksand', sans-serif;
         }
         .submit-form input[type="file"]::file-selector-button:hover {
-            background: var(--border);
+            background: var(--pink);
         }
         .submit-form .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 14px;
         }
         .submit-form .submit-btn {
             padding: 14px;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-md);
             border: none;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--pink), var(--magenta));
             color: #fff;
-            font-weight: 700;
-            font-size: 1.05rem;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all var(--transition);
-            font-family: inherit;
-            margin-top: 4px;
+            box-shadow: 0 4px 20px rgba(232, 138, 181, 0.2);
+            letter-spacing: 0.5px;
         }
         .submit-form .submit-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px var(--accent-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(232, 138, 181, 0.3);
         }
 
-        /* ── Teaching / Academy teaser ── */
+        /* ─── ACADEMY TEASER ─── */
         .academy-teaser {
-            background: linear-gradient(135deg, var(--surface), var(--surface-2));
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            padding: 40px 44px;
-            margin: 20px 0 50px;
+            background: rgba(255, 248, 250, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(249, 168, 184, 0.08);
+            padding: 36px 44px;
+            margin: 16px 0 50px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -587,22 +881,24 @@
             gap: 24px;
         }
         .academy-teaser .text h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.6rem;
+            color: #4a3a3a;
         }
         .academy-teaser .text p {
-            color: var(--text-muted);
-            margin-top: 4px;
+            color: #6a5a5a;
+            margin-top: 2px;
         }
         .academy-teaser .actions {
             flex-shrink: 0;
         }
 
-        /* ── Footer ── */
+        /* ─── FOOTER ─── */
         .footer {
-            border-top: 1px solid var(--border);
-            padding: 32px 0 28px;
-            margin-top: 20px;
+            border-top: 2px solid rgba(249, 168, 184, 0.1);
+            padding: 28px 0 24px;
+            margin-top: 12px;
+            background: rgba(255, 248, 250, 0.3);
         }
         .footer .container {
             display: flex;
@@ -613,36 +909,42 @@
         }
         .footer .copy {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #8a7a7a;
+        }
+        .footer .copy strong {
+            color: var(--pink-dark);
         }
         .footer .socials {
             display: flex;
             gap: 16px;
         }
         .footer .socials a {
-            color: var(--text-muted);
+            color: #8a7a7a;
             font-size: 0.9rem;
+            font-weight: 600;
             transition: color var(--transition);
+            text-decoration: none;
         }
         .footer .socials a:hover {
-            color: var(--text);
+            color: var(--pink-dark);
         }
 
-        /* ── Toast / notification ── */
+        /* ─── TOAST ─── */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            padding: 16px 24px;
-            border-radius: var(--radius-sm);
-            color: var(--text);
+            background: rgba(255, 248, 250, 0.92);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(249, 168, 184, 0.15);
+            padding: 18px 28px;
+            border-radius: var(--radius-md);
+            color: #4a3a3a;
             font-size: 0.95rem;
-            box-shadow: var(--shadow);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
             transform: translateY(120px);
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 999;
             max-width: 400px;
         }
@@ -651,18 +953,20 @@
             opacity: 1;
         }
         .toast .toast-title {
-            font-weight: 600;
-            color: var(--accent);
+            font-weight: 700;
+            color: var(--pink-dark);
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
         }
 
-        /* ── Responsive ── */
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 992px) {
             .submit-section .two-col {
                 grid-template-columns: 1fr;
                 gap: 28px;
             }
             .hero h1 {
-                font-size: 2.6rem;
+                font-size: 2.8rem;
             }
         }
 
@@ -675,10 +979,11 @@
                 justify-content: center;
             }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .hero p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                padding: 10px 18px;
             }
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -695,117 +1000,134 @@
                 padding: 28px 20px;
             }
             .section-head h2 {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
+                padding: 4px 20px;
             }
             .footer .container {
                 flex-direction: column;
                 text-align: center;
             }
+            .subscribe-cta {
+                padding: 32px 20px;
+            }
+            .subscribe-cta h2 {
+                font-size: 1.6rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
             }
             .btn {
                 padding: 10px 20px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
             .nav-links a {
                 font-size: 0.8rem;
                 padding: 6px 12px;
             }
-        }
-
-        /* ── Scrollbar ── */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 20px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
+            .gallery-card .card-body h3 {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ─── FLOATING DECORATIONS (MORE & CUTER) ─── -->
+    <div class="floating-deco" style="top:6%;left:2%;">🌸</div>
+    <div class="floating-deco" style="top:12%;right:1%;">⭐</div>
+    <div class="floating-deco" style="bottom:18%;left:1%;">🧸</div>
+    <div class="floating-deco" style="bottom:10%;right:2%;">✨</div>
+    <div class="floating-deco" style="top:40%;left:0.5%;">💖</div>
+    <div class="floating-deco" style="top:55%;right:0.5%;">🌈</div>
+    <div class="floating-deco" style="top:25%;left:6%;">☁️</div>
+    <div class="floating-deco" style="bottom:35%;right:4%;">🐻</div>
+    <div class="floating-deco" style="top:70%;left:3%;">🍬</div>
+    <div class="floating-deco" style="top:15%;left:12%;">🎀</div>
+
+    <!-- ─── NAVBAR ─── -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">
                 Fed<span>Promptly</span>
-                <span class="badge">beta</span>
+                <span class="badge">✦ beta</span>
             </div>
             <div class="nav-links">
                 <a href="#gallery">Gallery</a>
                 <a href="#submit">Share</a>
                 <a href="#academy">Academy</a>
-                <a href="#gallery" class="cta-link">Subscribe</a>
+                <a href="#subscribe" class="cta-link">✨ Subscribe</a>
             </div>
         </div>
     </nav>
 
-    <!-- ===== HERO ===== -->
+    <!-- ─── HERO ─── -->
     <section class="hero">
         <div class="container">
+            <div class="sticker-cloud">
+                <span>🌸</span>
+                <span>✦</span>
+                <span>🧁</span>
+                <span>💫</span>
+                <span>🍬</span>
+                <span>🎀</span>
+                <span>☁️</span>
+            </div>
             <h1>
                 Sell, Share &amp; Teach<br />
-                <span class="highlight">AI-Powered Prompts</span>
+                <span class="highlight">Kawaii AI Prompts</span>
             </h1>
             <p>
-                A curated marketplace for themed image prompts. Fill in the blanks,
-                download assets, and unlock premium galleries — all in one place.
+                ✦ A cozy community for themed image prompts — fill in the blanks,
+                download assets, and unlock premium galleries. ✦
             </p>
             <div class="actions">
-                <a href="#gallery" class="btn btn-primary">Explore Gallery</a>
-                <a href="#submit" class="btn btn-outline">Submit Your Theme</a>
-                <a href="#gallery" class="btn btn-gold">Subscribe &amp; Unlock</a>
+                <a href="#gallery" class="btn btn-primary">🌸 Explore Gallery</a>
+                <a href="#submit" class="btn btn-outline">✨ Submit Your Theme</a>
+                <a href="#subscribe" class="btn btn-gold">🌟 Subscribe &amp; Unlock</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== GALLERY ===== -->
-    <section id="gallery" style="padding: 20px 0 10px;">
+    <!-- ─── GALLERY ─── -->
+    <section id="gallery" style="padding:16px 0 8px;">
         <div class="container">
             <div class="section-head">
                 <h2>🎨 Theme Gallery</h2>
-                <p>Browse free prompts or subscribe to unlock premium themes with full-resolution images and detailed prompts.</p>
+                <p>Browse free prompts or subscribe to unlock premium themes with full-resolution images &amp; detailed prompts.</p>
             </div>
 
-            <!-- Pill Tabs (filter) -->
+            <!-- Pill Tabs -->
             <div class="pill-tabs">
                 <span class="pill active" data-filter="all">All</span>
-                <span class="pill" data-filter="free">Free</span>
-                <span class="pill" data-filter="premium">Premium</span>
+                <span class="pill" data-filter="free">💝 Free</span>
+                <span class="pill" data-filter="premium">⭐ Premium</span>
             </div>
 
-            <!-- ===== GALLERY GRID ===== -->
+            <!-- GALLERY GRID -->
             <div class="gallery-grid" id="galleryGrid">
 
                 <!-- CARD 1 — FREE -->
                 <div class="gallery-card" data-type="free">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/cyber/600/375" alt="Cyberpunk UI" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii1/600/375" alt="Cyberpunk Kawaii" loading="lazy" />
                     </div>
                     <div class="card-body">
                         <span class="theme-tag">🎯 Cyberpunk</span>
                         <h3>Neon Cyberpunk UI</h3>
-                        <p class="desc">A futuristic landing page with glowing neon accents and holographic overlays.</p>
-
+                        <p class="desc">A futuristic landing page with glowing neon accents &amp; holographic overlays.</p>
                         <details>
                             <summary>📋 View Prompt</summary>
                             <div class="prompt-content">
                                 A high-tech website landing page for <span class="blank">[Your Brand Name]</span>, cyberpunk aesthetic, neon cyan &amp; magenta accents, holographic UI elements, dark glassmorphism panels, 8K, photorealistic, --ar 16:9
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag free">⬇️ Free Download</span>
                             <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Cyberpunk UI')">Download</a>
@@ -816,20 +1138,18 @@
                 <!-- CARD 2 — FREE -->
                 <div class="gallery-card" data-type="free">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/retro/600/375" alt="Retro Anime" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii2/600/375" alt="Retro Anime" loading="lazy" />
                     </div>
                     <div class="card-body">
                         <span class="theme-tag">🌸 Retro Anime</span>
                         <h3>Vaporwave Anime Scene</h3>
                         <p class="desc">A nostalgic 90s anime style with pastel gradients, city pop vibes, and dreamy lighting.</p>
-
                         <details>
                             <summary>📋 View Prompt</summary>
                             <div class="prompt-content">
                                 A retro anime-style illustration of <span class="blank">[Your Character]</span> in a neon-lit city at dusk, pastel pink and blue gradients, VHS grain, 90s aesthetic, cinematic lighting, masterpiece, --ar 3:2
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag free">⬇️ Free Download</span>
                             <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Retro Anime')">Download</a>
@@ -840,7 +1160,7 @@
                 <!-- CARD 3 — PREMIUM (blurred) -->
                 <div class="gallery-card" data-type="premium">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/premium1/600/375" alt="Premium Theme" class="blurred" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii3/600/375" alt="Premium Theme" class="blurred" loading="lazy" />
                         <div class="lock-overlay">
                             <span class="lock-icon">🔒</span>
                             <p>Premium Member Only</p>
@@ -851,16 +1171,14 @@
                         <span class="theme-tag">✨ Surrealism</span>
                         <h3>Dreamscape Architecture <span class="premium-badge">Premium</span></h3>
                         <p class="desc">A surreal, floating architectural wonder with impossible geometry and ethereal lighting.</p>
-
                         <details>
                             <summary>📋 View Prompt (preview)</summary>
                             <div class="prompt-content">
                                 A surreal floating building designed by <span class="blank">[Architect Name]</span>, impossible geometry, soft pastel clouds, bioluminescent vines, dreamlike atmosphere, 8K, --ar 16:9
                                 <br /><br />
-                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                                <span style="color:var(--pink-dark);font-weight:700;">🔓 Full prompt + high-res images available to subscribers.</span>
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag">⭐ $9.99 / mo</span>
                             <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
@@ -871,7 +1189,7 @@
                 <!-- CARD 4 — PREMIUM (blurred) -->
                 <div class="gallery-card" data-type="premium">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/premium2/600/375" alt="Premium Theme 2" class="blurred" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii4/600/375" alt="Premium Theme 2" class="blurred" loading="lazy" />
                         <div class="lock-overlay">
                             <span class="lock-icon">🔒</span>
                             <p>Premium Member Only</p>
@@ -882,16 +1200,14 @@
                         <span class="theme-tag">🧙 Fantasy</span>
                         <h3>Ethereal Fantasy Realm <span class="premium-badge">Premium</span></h3>
                         <p class="desc">A mystical fantasy world with floating islands, ancient ruins, and golden hour glow.</p>
-
                         <details>
                             <summary>📋 View Prompt (preview)</summary>
                             <div class="prompt-content">
                                 A fantasy landscape with floating islands, ancient stone ruins, glowing runes, epic golden hour lighting, cinematic, digital painting, by <span class="blank">[Artist Name]</span> style, --ar 16:9
                                 <br /><br />
-                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                                <span style="color:var(--pink-dark);font-weight:700;">🔓 Full prompt + high-res images available to subscribers.</span>
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag">⭐ $9.99 / mo</span>
                             <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
@@ -902,20 +1218,18 @@
                 <!-- CARD 5 — FREE -->
                 <div class="gallery-card" data-type="free">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/minimal/600/375" alt="Minimalist" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii5/600/375" alt="Minimalist" loading="lazy" />
                     </div>
                     <div class="card-body">
                         <span class="theme-tag">⬜ Minimalist</span>
                         <h3>Clean SaaS Landing</h3>
                         <p class="desc">A minimalist, product-focused UI with soft shadows, rounded corners, and calm typography.</p>
-
                         <details>
                             <summary>📋 View Prompt</summary>
                             <div class="prompt-content">
                                 A clean SaaS landing page for <span class="blank">[Product Name]</span>, minimalist design, soft shadows, rounded UI, warm neutral palette, high-fidelity wireframe, 8K, --ar 16:9
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag free">⬇️ Free Download</span>
                             <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Minimalist SaaS')">Download</a>
@@ -926,7 +1240,7 @@
                 <!-- CARD 6 — PREMIUM (blurred) -->
                 <div class="gallery-card" data-type="premium">
                     <div class="img-wrap">
-                        <img src="https://picsum.photos/seed/premium3/600/375" alt="Premium 3" class="blurred" loading="lazy" />
+                        <img src="https://picsum.photos/seed/kawaii6/600/375" alt="Premium 3" class="blurred" loading="lazy" />
                         <div class="lock-overlay">
                             <span class="lock-icon">🔒</span>
                             <p>Premium Member Only</p>
@@ -937,16 +1251,14 @@
                         <span class="theme-tag">🌌 Sci-Fi</span>
                         <h3>Deep Space Colony <span class="premium-badge">Premium</span></h3>
                         <p class="desc">A futuristic space colony with domed habitats, starships, and a distant nebula.</p>
-
                         <details>
                             <summary>📋 View Prompt (preview)</summary>
                             <div class="prompt-content">
                                 A space colony on an alien planet, domed habitats, hovering starships, bioluminescent flora, distant nebula, sci-fi concept art, 8K, --ar 16:9
                                 <br /><br />
-                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                                <span style="color:var(--pink-dark);font-weight:700;">🔓 Full prompt + high-res images available to subscribers.</span>
                             </div>
                         </details>
-
                         <div class="card-footer">
                             <span class="price-tag">⭐ $9.99 / mo</span>
                             <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
@@ -956,32 +1268,27 @@
 
             </div><!-- /gallery-grid -->
 
-            <!-- ===== SUBSCRIBE CTA (inline) ===== -->
-            <div id="subscribe" style="text-align:center;padding:20px 0 10px;">
-                <div style="background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:40px 32px;">
-                    <h2 style="font-size:1.8rem;font-weight:700;">🔓 Unlock All Premium Themes</h2>
-                    <p style="color:var(--text-muted);max-width:500px;margin:8px auto 20px;">
-                        Get full access to every blurred theme, high-res image downloads, and detailed prompt templates.
-                    </p>
-                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
-                        <a href="#" class="btn btn-gold" style="padding:16px 44px;font-size:1.1rem;">Subscribe — $9.99/mo</a>
-                        <a href="#" class="btn btn-outline" style="padding:16px 32px;font-size:1.1rem;">View Plans</a>
+            <!-- ─── SUBSCRIBE CTA ─── -->
+            <div id="subscribe">
+                <div class="subscribe-cta">
+                    <h2>🔓 Unlock All Premium Themes</h2>
+                    <p>Get full access to every blurred theme, high-res image downloads, and detailed prompt templates.</p>
+                    <div class="btn-wrap">
+                        <a href="#" class="btn btn-subscribe" style="padding:16px 48px;font-size:1.15rem;">Subscribe — $9.99/mo</a>
+                        <a href="#" class="btn btn-outline" style="padding:16px 36px;font-size:1.05rem;">View Plans</a>
                     </div>
-                    <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">
-                        ⚡ Cancel anytime. Instant access to all premium galleries.
-                    </p>
+                    <p class="fine">⚡ Cancel anytime. Instant access to all premium galleries.</p>
                 </div>
             </div>
 
         </div><!-- /container -->
     </section>
 
-    <!-- ===== SUBMIT SECTION ===== -->
+    <!-- ─── SUBMIT SECTION ─── -->
     <section id="submit">
         <div class="container">
             <div class="submit-section">
                 <div class="two-col">
-                    <!-- left: info -->
                     <div class="info">
                         <h2>🙌 Share Your Theme</h2>
                         <p>
@@ -995,7 +1302,6 @@
                             <li><span>💰</span> Premium themes are eligible for revenue share</li>
                         </ul>
                     </div>
-                    <!-- right: form -->
                     <form class="submit-form" id="submitForm" onsubmit="handleSubmit(event)">
                         <div class="form-row">
                             <div>
@@ -1015,22 +1321,18 @@
                                 </select>
                             </div>
                         </div>
-
                         <div>
                             <label for="promptText">Your Fill-in-the-Blank Prompt *</label>
                             <textarea id="promptText" placeholder="A high-tech landing page for [Your Brand Name], cyberpunk aesthetic, neon accents..." required></textarea>
                         </div>
-
                         <div>
                             <label for="promptDesc">Short Description (max 120 chars)</label>
                             <input type="text" id="promptDesc" placeholder="A futuristic landing page with glowing neon accents." maxlength="120" />
                         </div>
-
                         <div>
                             <label for="imageUpload">Upload Example Image (JPG / PNG)</label>
                             <input type="file" id="imageUpload" accept="image/*" />
                         </div>
-
                         <div class="form-row">
                             <div>
                                 <label for="submitterName">Your Name / Alias</label>
@@ -1041,7 +1343,6 @@
                                 <input type="email" id="submitterEmail" placeholder="you@example.com" />
                             </div>
                         </div>
-
                         <button type="submit" class="submit-btn">🚀 Submit Theme</button>
                     </form>
                 </div>
@@ -1049,7 +1350,7 @@
         </div>
     </section>
 
-    <!-- ===== ACADEMY TEASER ===== -->
+    <!-- ─── ACADEMY TEASER ─── -->
     <section id="academy">
         <div class="container">
             <div class="academy-teaser">
@@ -1068,11 +1369,11 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ─── FOOTER ─── -->
     <footer class="footer">
         <div class="container">
             <div class="copy">
-                &copy; 2026 <strong>FedPromptly</strong> — built for prompt creators &amp; AI enthusiasts.
+                &copy; 2026 <strong>FedPromptly</strong> ✦ built for prompt creators &amp; AI enthusiasts.
             </div>
             <div class="socials">
                 <a href="#">Twitter</a>
@@ -1083,13 +1384,13 @@
         </div>
     </footer>
 
-    <!-- ===== TOAST NOTIFICATION ===== -->
+    <!-- ─── TOAST ─── -->
     <div class="toast" id="toast">
         <div class="toast-title" id="toastTitle">🎉 Success!</div>
         <div id="toastMessage">Your action was completed.</div>
     </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ─── JAVASCRIPT ─── -->
     <script>
         // ── Toast helper ──
         function showToast(title, message) {
@@ -1105,17 +1406,15 @@
         function handleDownload(e, name) {
             e.preventDefault();
             showToast('⬇️ Download started', `"${name}" theme assets are on their way!`);
-            // In a real implementation, this would trigger a file download.
-            // For demo, we simulate a download.
             const link = document.createElement('a');
             link.download = `${name.toLowerCase().replace(/\s+/g, '-')}-prompt.txt`;
             link.href = URL.createObjectURL(new Blob([
-                `FedPromptly — ${name}\n\n` +
+                `FedPromptly ✦ ${name}\n\n` +
                 `Prompt: [Your custom prompt here]\n` +
-                `Style: ${document.querySelector('.gallery-card .theme-tag')?.textContent?.trim() || 'Custom'}\n` +
+                `Style: Custom Kawaii Theme\n` +
                 `Aspect: 16:9\n` +
                 `Model: Midjourney / Stable Diffusion\n\n` +
-                `— Downloaded from FedPromptly.com`
+                `— Downloaded from FedPromptly.com 🌸`
             ], { type: 'text/plain' }));
             link.click();
             URL.revokeObjectURL(link.href);
@@ -1133,7 +1432,6 @@
                 return;
             }
 
-            // Simulate submission
             showToast('✅ Theme submitted!', `"${name}" has been sent for review. We'll be in touch.`);
             form.reset();
         }
@@ -1141,7 +1439,6 @@
         // ── Pill tabs filtering ──
         document.querySelectorAll('.pill-tabs .pill').forEach(pill => {
             pill.addEventListener('click', function() {
-                // update active state
                 document.querySelectorAll('.pill-tabs .pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
 
@@ -1174,8 +1471,8 @@
         });
 
         // ── Console branding ──
-        console.log('%c FedPromptly 🚀 ', 'background:#7c5cfc;color:#fff;font-size:1.2rem;padding:8px 14px;border-radius:6px;');
-        console.log('%c Sell · Share · Teach AI Prompts', 'color:#949bb0;font-size:0.9rem;');
+        console.log('%c🌸 FedPromptly ✦ ', 'background:#f9a8b8;color:#4a3a3a;font-size:1.4rem;padding:10px 18px;border-radius:12px;font-weight:700;');
+        console.log('%c Sell · Share · Teach Kawaii AI Prompts', 'color:#6a5a5a;font-size:0.95rem;');
     </script>
 
 </body>
