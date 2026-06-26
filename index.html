@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FedPromptly — AI Prompt Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b0d11;
+            --surface: #14171e;
+            --surface-2: #1c202a;
+            --border: #2a2f3d;
+            --text: #eef1f8;
+            --text-muted: #949bb0;
+            --accent: #7c5cfc;
+            --accent-glow: rgba(124, 92, 252, 0.25);
+            --accent-hover: #9a7eff;
+            --gold: #f7c948;
+            --radius: 14px;
+            --radius-sm: 8px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --transition: 0.25s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            font-family: inherit;
+            background: var(--surface-2);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            color: #fff;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #0b0d11;
+            border-color: var(--gold);
+        }
+        .btn-gold:hover {
+            background: #ffdb5e;
+            border-color: #ffdb5e;
+            color: #0b0d11;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.82rem;
+        }
+
+        /* ── Header / Nav ── */
+        .navbar {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 13, 17, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .logo .badge {
+            font-size: 0.6rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.92rem;
+            padding: 8px 16px;
+            border-radius: 40px;
+            transition: all var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface-2);
+        }
+        .nav-links a.cta-link {
+            background: var(--accent);
+            color: #fff;
+        }
+        .nav-links a.cta-link:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 60px 0 50px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            max-width: 780px;
+            margin: 0 auto 16px;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto 32px;
+        }
+        .hero .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* ── Section Headers ── */
+        .section-head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-head h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .section-head p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 8px auto 0;
+        }
+
+        /* ── Pill Tabs ── */
+        .pill-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+        .pill-tabs .pill {
+            padding: 8px 22px;
+            border-radius: 40px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-muted);
+        }
+        .pill-tabs .pill:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .pill-tabs .pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* ── Gallery Grid ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+
+        .gallery-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-card .img-wrap {
+            position: relative;
+            aspect-ratio: 16/10;
+            background: var(--surface-2);
+            overflow: hidden;
+        }
+        .gallery-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter var(--transition);
+        }
+        .gallery-card .img-wrap img.blurred {
+            filter: blur(18px) brightness(0.5);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .gallery-card .lock-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            gap: 8px;
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+        }
+        .gallery-card .img-wrap:hover .lock-overlay {
+            opacity: 1;
+        }
+        .gallery-card .lock-overlay .lock-icon {
+            font-size: 2.4rem;
+        }
+        .gallery-card .lock-overlay p {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        .gallery-card .lock-overlay .btn {
+            pointer-events: auto;
+            margin-top: 4px;
+        }
+
+        .gallery-card .card-body {
+            padding: 18px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-card .card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .gallery-card .card-body .theme-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(124, 92, 252, 0.12);
+            padding: 2px 12px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        .gallery-card .card-body .desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        /* ── Dropdown Prompt ── */
+        details {
+            margin: 10px 0 14px;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: border var(--transition);
+        }
+        details:hover {
+            border-color: var(--accent);
+        }
+        details summary {
+            padding: 10px 16px;
+            font-weight: 500;
+            font-size: 0.88rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::after {
+            content: "▾";
+            font-size: 0.7rem;
+            transition: transform var(--transition);
+            color: var(--text-muted);
+        }
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+        details summary:hover {
+            color: var(--text);
+        }
+        details .prompt-content {
+            padding: 0 16px 16px;
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+        details .prompt-content .blank {
+            display: inline-block;
+            background: rgba(124, 92, 252, 0.15);
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0 6px;
+            border-radius: 4px;
+            border-bottom: 2px dashed var(--accent);
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .card-footer .price-tag {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+        .card-footer .price-tag.free {
+            color: #4ade80;
+        }
+
+        /* ── Premium badge ── */
+        .premium-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--gold);
+            color: #0b0d11;
+            padding: 2px 12px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        /* ── Submit Section ── */
+        .submit-section {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 48px 40px;
+            margin: 48px 0 60px;
+        }
+        .submit-section .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .submit-section .info h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .submit-section .info p {
+            color: var(--text-muted);
+            margin: 12px 0 20px;
+        }
+        .submit-section .info .benefits {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .submit-section .info .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        .submit-section .info .benefits li span {
+            font-size: 1.2rem;
+        }
+
+        .submit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .submit-form label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .submit-form input,
+        .submit-form textarea,
+        .submit-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border var(--transition);
+            outline: none;
+        }
+        .submit-form input:focus,
+        .submit-form textarea:focus,
+        .submit-form select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .submit-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .submit-form input[type="file"] {
+            padding: 10px 12px;
+            background: var(--bg);
+            cursor: pointer;
+        }
+        .submit-form input[type="file"]::file-selector-button {
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: none;
+            background: var(--surface-2);
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 12px;
+            transition: background var(--transition);
+        }
+        .submit-form input[type="file"]::file-selector-button:hover {
+            background: var(--border);
+        }
+        .submit-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .submit-form .submit-btn {
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+            margin-top: 4px;
+        }
+        .submit-form .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px var(--accent-glow);
+        }
+
+        /* ── Teaching / Academy teaser ── */
+        .academy-teaser {
+            background: linear-gradient(135deg, var(--surface), var(--surface-2));
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 40px 44px;
+            margin: 20px 0 50px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .academy-teaser .text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .academy-teaser .text p {
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .academy-teaser .actions {
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0 28px;
+            margin-top: 20px;
+        }
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .footer .copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .footer .socials {
+            display: flex;
+            gap: 16px;
+        }
+        .footer .socials a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+        .footer .socials a:hover {
+            color: var(--text);
+        }
+
+        /* ── Toast / notification ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-size: 0.95rem;
+            box-shadow: var(--shadow);
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 999;
+            max-width: 400px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast .toast-title {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 992px) {
+            .submit-section .two-col {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .submit-section {
+                padding: 28px 18px;
+            }
+            .submit-form .form-row {
+                grid-template-columns: 1fr;
+            }
+            .academy-teaser {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 20px;
+            }
+            .section-head h2 {
+                font-size: 1.7rem;
+            }
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                Fed<span>Promptly</span>
+                <span class="badge">beta</span>
+            </div>
+            <div class="nav-links">
+                <a href="#gallery">Gallery</a>
+                <a href="#submit">Share</a>
+                <a href="#academy">Academy</a>
+                <a href="#gallery" class="cta-link">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <h1>
+                Sell, Share &amp; Teach<br />
+                <span class="highlight">AI-Powered Prompts</span>
+            </h1>
+            <p>
+                A curated marketplace for themed image prompts. Fill in the blanks,
+                download assets, and unlock premium galleries — all in one place.
+            </p>
+            <div class="actions">
+                <a href="#gallery" class="btn btn-primary">Explore Gallery</a>
+                <a href="#submit" class="btn btn-outline">Submit Your Theme</a>
+                <a href="#gallery" class="btn btn-gold">Subscribe &amp; Unlock</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" style="padding: 20px 0 10px;">
+        <div class="container">
+            <div class="section-head">
+                <h2>🎨 Theme Gallery</h2>
+                <p>Browse free prompts or subscribe to unlock premium themes with full-resolution images and detailed prompts.</p>
+            </div>
+
+            <!-- Pill Tabs (filter) -->
+            <div class="pill-tabs">
+                <span class="pill active" data-filter="all">All</span>
+                <span class="pill" data-filter="free">Free</span>
+                <span class="pill" data-filter="premium">Premium</span>
+            </div>
+
+            <!-- ===== GALLERY GRID ===== -->
+            <div class="gallery-grid" id="galleryGrid">
+
+                <!-- CARD 1 — FREE -->
+                <div class="gallery-card" data-type="free">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/cyber/600/375" alt="Cyberpunk UI" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">🎯 Cyberpunk</span>
+                        <h3>Neon Cyberpunk UI</h3>
+                        <p class="desc">A futuristic landing page with glowing neon accents and holographic overlays.</p>
+
+                        <details>
+                            <summary>📋 View Prompt</summary>
+                            <div class="prompt-content">
+                                A high-tech website landing page for <span class="blank">[Your Brand Name]</span>, cyberpunk aesthetic, neon cyan &amp; magenta accents, holographic UI elements, dark glassmorphism panels, 8K, photorealistic, --ar 16:9
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag free">⬇️ Free Download</span>
+                            <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Cyberpunk UI')">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 — FREE -->
+                <div class="gallery-card" data-type="free">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/retro/600/375" alt="Retro Anime" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">🌸 Retro Anime</span>
+                        <h3>Vaporwave Anime Scene</h3>
+                        <p class="desc">A nostalgic 90s anime style with pastel gradients, city pop vibes, and dreamy lighting.</p>
+
+                        <details>
+                            <summary>📋 View Prompt</summary>
+                            <div class="prompt-content">
+                                A retro anime-style illustration of <span class="blank">[Your Character]</span> in a neon-lit city at dusk, pastel pink and blue gradients, VHS grain, 90s aesthetic, cinematic lighting, masterpiece, --ar 3:2
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag free">⬇️ Free Download</span>
+                            <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Retro Anime')">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 — PREMIUM (blurred) -->
+                <div class="gallery-card" data-type="premium">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/premium1/600/375" alt="Premium Theme" class="blurred" loading="lazy" />
+                        <div class="lock-overlay">
+                            <span class="lock-icon">🔒</span>
+                            <p>Premium Member Only</p>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Unlock Now</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">✨ Surrealism</span>
+                        <h3>Dreamscape Architecture <span class="premium-badge">Premium</span></h3>
+                        <p class="desc">A surreal, floating architectural wonder with impossible geometry and ethereal lighting.</p>
+
+                        <details>
+                            <summary>📋 View Prompt (preview)</summary>
+                            <div class="prompt-content">
+                                A surreal floating building designed by <span class="blank">[Architect Name]</span>, impossible geometry, soft pastel clouds, bioluminescent vines, dreamlike atmosphere, 8K, --ar 16:9
+                                <br /><br />
+                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag">⭐ $9.99 / mo</span>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 — PREMIUM (blurred) -->
+                <div class="gallery-card" data-type="premium">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/premium2/600/375" alt="Premium Theme 2" class="blurred" loading="lazy" />
+                        <div class="lock-overlay">
+                            <span class="lock-icon">🔒</span>
+                            <p>Premium Member Only</p>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Unlock Now</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">🧙 Fantasy</span>
+                        <h3>Ethereal Fantasy Realm <span class="premium-badge">Premium</span></h3>
+                        <p class="desc">A mystical fantasy world with floating islands, ancient ruins, and golden hour glow.</p>
+
+                        <details>
+                            <summary>📋 View Prompt (preview)</summary>
+                            <div class="prompt-content">
+                                A fantasy landscape with floating islands, ancient stone ruins, glowing runes, epic golden hour lighting, cinematic, digital painting, by <span class="blank">[Artist Name]</span> style, --ar 16:9
+                                <br /><br />
+                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag">⭐ $9.99 / mo</span>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5 — FREE -->
+                <div class="gallery-card" data-type="free">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/minimal/600/375" alt="Minimalist" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">⬜ Minimalist</span>
+                        <h3>Clean SaaS Landing</h3>
+                        <p class="desc">A minimalist, product-focused UI with soft shadows, rounded corners, and calm typography.</p>
+
+                        <details>
+                            <summary>📋 View Prompt</summary>
+                            <div class="prompt-content">
+                                A clean SaaS landing page for <span class="blank">[Product Name]</span>, minimalist design, soft shadows, rounded UI, warm neutral palette, high-fidelity wireframe, 8K, --ar 16:9
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag free">⬇️ Free Download</span>
+                            <a href="#" class="btn btn-sm btn-primary" onclick="handleDownload(event, 'Minimalist SaaS')">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6 — PREMIUM (blurred) -->
+                <div class="gallery-card" data-type="premium">
+                    <div class="img-wrap">
+                        <img src="https://picsum.photos/seed/premium3/600/375" alt="Premium 3" class="blurred" loading="lazy" />
+                        <div class="lock-overlay">
+                            <span class="lock-icon">🔒</span>
+                            <p>Premium Member Only</p>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Unlock Now</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span class="theme-tag">🌌 Sci-Fi</span>
+                        <h3>Deep Space Colony <span class="premium-badge">Premium</span></h3>
+                        <p class="desc">A futuristic space colony with domed habitats, starships, and a distant nebula.</p>
+
+                        <details>
+                            <summary>📋 View Prompt (preview)</summary>
+                            <div class="prompt-content">
+                                A space colony on an alien planet, domed habitats, hovering starships, bioluminescent flora, distant nebula, sci-fi concept art, 8K, --ar 16:9
+                                <br /><br />
+                                <span style="color:var(--gold);font-weight:600;">🔓 Full prompt + high-res images available to subscribers.</span>
+                            </div>
+                        </details>
+
+                        <div class="card-footer">
+                            <span class="price-tag">⭐ $9.99 / mo</span>
+                            <a href="#subscribe" class="btn btn-sm btn-gold">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /gallery-grid -->
+
+            <!-- ===== SUBSCRIBE CTA (inline) ===== -->
+            <div id="subscribe" style="text-align:center;padding:20px 0 10px;">
+                <div style="background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:40px 32px;">
+                    <h2 style="font-size:1.8rem;font-weight:700;">🔓 Unlock All Premium Themes</h2>
+                    <p style="color:var(--text-muted);max-width:500px;margin:8px auto 20px;">
+                        Get full access to every blurred theme, high-res image downloads, and detailed prompt templates.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
+                        <a href="#" class="btn btn-gold" style="padding:16px 44px;font-size:1.1rem;">Subscribe — $9.99/mo</a>
+                        <a href="#" class="btn btn-outline" style="padding:16px 32px;font-size:1.1rem;">View Plans</a>
+                    </div>
+                    <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">
+                        ⚡ Cancel anytime. Instant access to all premium galleries.
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- /container -->
+    </section>
+
+    <!-- ===== SUBMIT SECTION ===== -->
+    <section id="submit">
+        <div class="container">
+            <div class="submit-section">
+                <div class="two-col">
+                    <!-- left: info -->
+                    <div class="info">
+                        <h2>🙌 Share Your Theme</h2>
+                        <p>
+                            Have a killer prompt idea? Submit it to the FedPromptly community.
+                            If selected, your theme will be featured in our gallery with full credit.
+                        </p>
+                        <ul class="benefits">
+                            <li><span>🏆</span> Get featured on the homepage</li>
+                            <li><span>🔗</span> Backlink to your socials or portfolio</li>
+                            <li><span>📈</span> Join a growing community of prompt creators</li>
+                            <li><span>💰</span> Premium themes are eligible for revenue share</li>
+                        </ul>
+                    </div>
+                    <!-- right: form -->
+                    <form class="submit-form" id="submitForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div>
+                                <label for="themeName">Theme Name *</label>
+                                <input type="text" id="themeName" placeholder="e.g. Neon Cyberpunk UI" required />
+                            </div>
+                            <div>
+                                <label for="themeCategory">Category</label>
+                                <select id="themeCategory">
+                                    <option value="cyberpunk">Cyberpunk</option>
+                                    <option value="anime">Anime / Retro</option>
+                                    <option value="fantasy">Fantasy</option>
+                                    <option value="scifi">Sci-Fi</option>
+                                    <option value="minimal">Minimalist</option>
+                                    <option value="surreal">Surreal</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="promptText">Your Fill-in-the-Blank Prompt *</label>
+                            <textarea id="promptText" placeholder="A high-tech landing page for [Your Brand Name], cyberpunk aesthetic, neon accents..." required></textarea>
+                        </div>
+
+                        <div>
+                            <label for="promptDesc">Short Description (max 120 chars)</label>
+                            <input type="text" id="promptDesc" placeholder="A futuristic landing page with glowing neon accents." maxlength="120" />
+                        </div>
+
+                        <div>
+                            <label for="imageUpload">Upload Example Image (JPG / PNG)</label>
+                            <input type="file" id="imageUpload" accept="image/*" />
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label for="submitterName">Your Name / Alias</label>
+                                <input type="text" id="submitterName" placeholder="e.g. PromptMaster" />
+                            </div>
+                            <div>
+                                <label for="submitterEmail">Email (for updates)</label>
+                                <input type="email" id="submitterEmail" placeholder="you@example.com" />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">🚀 Submit Theme</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACADEMY TEASER ===== -->
+    <section id="academy">
+        <div class="container">
+            <div class="academy-teaser">
+                <div class="text">
+                    <h3>🎓 Prompt Academy</h3>
+                    <p>
+                        Learn how to craft powerful fill-in-the-blank prompts, master aspect ratios,
+                        and style-tune for Midjourney, Stable Diffusion, and more.
+                    </p>
+                </div>
+                <div class="actions">
+                    <a href="#" class="btn btn-primary">Coming Soon</a>
+                    <a href="#" class="btn btn-outline" style="margin-left:8px;">Get Notified</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copy">
+                &copy; 2026 <strong>FedPromptly</strong> — built for prompt creators &amp; AI enthusiasts.
+            </div>
+            <div class="socials">
+                <a href="#">Twitter</a>
+                <a href="#">GitHub</a>
+                <a href="#">Discord</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">🎉 Success!</div>
+        <div id="toastMessage">Your action was completed.</div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ── Toast helper ──
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._hide);
+            toast._hide = setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+
+        // ── Download handler ──
+        function handleDownload(e, name) {
+            e.preventDefault();
+            showToast('⬇️ Download started', `"${name}" theme assets are on their way!`);
+            // In a real implementation, this would trigger a file download.
+            // For demo, we simulate a download.
+            const link = document.createElement('a');
+            link.download = `${name.toLowerCase().replace(/\s+/g, '-')}-prompt.txt`;
+            link.href = URL.createObjectURL(new Blob([
+                `FedPromptly — ${name}\n\n` +
+                `Prompt: [Your custom prompt here]\n` +
+                `Style: ${document.querySelector('.gallery-card .theme-tag')?.textContent?.trim() || 'Custom'}\n` +
+                `Aspect: 16:9\n` +
+                `Model: Midjourney / Stable Diffusion\n\n` +
+                `— Downloaded from FedPromptly.com`
+            ], { type: 'text/plain' }));
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // ── Form submission ──
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('submitForm');
+            const name = document.getElementById('themeName').value.trim();
+            const prompt = document.getElementById('promptText').value.trim();
+
+            if (!name || !prompt) {
+                showToast('⚠️ Missing fields', 'Please fill in Theme Name and Prompt.');
+                return;
+            }
+
+            // Simulate submission
+            showToast('✅ Theme submitted!', `"${name}" has been sent for review. We'll be in touch.`);
+            form.reset();
+        }
+
+        // ── Pill tabs filtering ──
+        document.querySelectorAll('.pill-tabs .pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                // update active state
+                document.querySelectorAll('.pill-tabs .pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                const cards = document.querySelectorAll('.gallery-card');
+                cards.forEach(card => {
+                    const type = card.dataset.type;
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else if (filter === 'free' && type === 'free') {
+                        card.style.display = 'flex';
+                    } else if (filter === 'premium' && type === 'premium') {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ── Smooth anchor scroll ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ── Console branding ──
+        console.log('%c FedPromptly 🚀 ', 'background:#7c5cfc;color:#fff;font-size:1.2rem;padding:8px 14px;border-radius:6px;');
+        console.log('%c Sell · Share · Teach AI Prompts', 'color:#949bb0;font-size:0.9rem;');
+    </script>
+
+</body>
+</html>
